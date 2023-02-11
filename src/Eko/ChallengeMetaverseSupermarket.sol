@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-import "openzeppelin-contracts/utils/cryptography/EIP712.sol";
+import "openzeppelin-contracts/contracts/utils/cryptography/EIP712.sol";
 
 struct OraclePrice {
     uint256 blockNumber;
@@ -18,9 +18,8 @@ abstract contract InflaStoreEIP712 is EIP712 {
     bytes32 public constant ORACLE_PRICE_TYPEHASH = keccak256("OraclePrice(uint256 blockNumber,uint256 price)");
 
     function _hashOraclePrice(OraclePrice memory oraclePrice) internal view returns (bytes32 hash) {
-        return _hashTypedDataV4(
-            keccak256(abi.encode(ORACLE_PRICE_TYPEHASH, oraclePrice.blockNumber, oraclePrice.price))
-        );
+        return
+            _hashTypedDataV4(keccak256(abi.encode(ORACLE_PRICE_TYPEHASH, oraclePrice.blockNumber, oraclePrice.price)));
     }
 }
 
