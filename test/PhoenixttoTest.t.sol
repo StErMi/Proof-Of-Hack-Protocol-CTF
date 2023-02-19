@@ -62,7 +62,8 @@ contract PhoenixttoMutated {
     address public owner;
 
     function reBorn() external {
-        // we don't care about this part but we still need to expose
+        // we don't care about this part but we still need to expose it
+        // otherwise Laboratory.reBorn would revert
     }
 
     function capture(string memory _newOwner) external {
